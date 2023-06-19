@@ -1,4 +1,4 @@
-.chatgpt-robot-form {
+:local .chatgpt-robot-form {
   padding: 15px 20px;
   display: flex;
   align-items: flex-end;
@@ -25,10 +25,11 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
+
 .chatgpt-robot-form-btn:hover {
   color: #fff;
-  border-color: rgb(115 113 252 / 80%);
-  background-color: rgb(115 113 252 / 80%);
+  border-color: rgba(115, 113, 252, 80%);
+  background-color: rgba(115, 113, 252, 80%);
 }
 
 .chatgpt-robot-textarea {

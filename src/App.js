@@ -1,8 +1,7 @@
 import React from "react";
-// import logo from "./logo.svg";
 import "./App.css";
 
-import ChatgptRobot from "./components/chatgpt-robot/chatgpt-robot.tsx";
+import ChatgptRobot from "./components/chatgpt-robot/index.tsx";
 
 function App() {
   return (

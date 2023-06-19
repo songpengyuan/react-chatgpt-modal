@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./index.css";
+import styles from "./index.module.scss";
 
 function formatTime(date) {
   // return new Intl.DateTimeFormat("en-US", {
@@ -16,7 +16,7 @@ function formatTime(date) {
 const ChatgptRobotMessage = (props) => {
   const { date, text, reply, type, user } = props.data || {};
   const { name, avatar } = user || {};
-  const delay = 300;
+  const delay = 60;
 
   const [displayedText, setDisplayedText] = useState("");
 
@@ -42,18 +42,18 @@ const ChatgptRobotMessage = (props) => {
 
   return (
     <div
-      className={`chat-robot-message chatgpt-robot-message-item ${
-        reply ? "reply" : "not-reply"
-      }`}
+      className={`${styles["chat-robot-message"]} ${
+        styles["chatgpt-robot-message-item"]
+      }  ${reply ? styles["reply"] : styles["not-reply"]}`}
     >
-      <img className="avatar" src={avatar} />
-      <div className="message flex flex-col">
-        <p className="sender">
-          <span className="mr-[5px]">{name}</span>
+      <img className={styles["avatar"]} src={avatar} />
+      <div className={styles["message"]}>
+        <p className={styles["sender"]}>
+          <span className={styles["mr-5px"]}>{name}</span>
           <span>{formatTime(date)}</span>
         </p>
-        <div className="message-content">
-          <pre className="text !mb-0"> {displayedText} </pre>
+        <div className={styles["message-content"]}>
+          <pre className={styles["text"]}> {displayedText} </pre>
         </div>
       </div>
     </div>

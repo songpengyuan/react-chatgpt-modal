@@ -1,7 +1,8 @@
-.chat-robot-message {
+:local .chat-robot-message {
   display: flex;
   margin-bottom: 1.5rem;
   font-size: 14px;
+  text-align: left;
 }
 
 .chat-robot-message.not-reply {
@@ -9,16 +10,19 @@
 }
 
 .chat-robot-message.not-reply .message-content {
-  background: rgb(244 244 244);
+  background: rgb(244, 244, 244);
   color: #333;
   text-align: left;
 }
+
 .chat-robot-message.not-reply .sender {
   text-align: right;
 }
+
 .chat-robot-message.reply .message-content {
   background: #36f;
   color: #fff;
+  text-align: left;
 }
 
 .message-content {
@@ -29,9 +33,11 @@
   color: #fff;
 }
 
+
 .text {
   word-wrap: break-word;
   white-space: pre-wrap;
+  margin: 0;
 }
 
 .avatar {
@@ -67,6 +73,6 @@
   text-align: left;
 }
 
-.mr-\[5px\] {
+.mr-5px {
   margin-right: 5px;
 }
