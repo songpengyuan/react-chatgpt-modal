@@ -5,13 +5,14 @@ import ChatgptRobotMessage from "./chat-robot-message/index.tsx";
 import ChatgptRobotForm from "./chat-robot-form/index.tsx";
 import styles from "./index.module.scss";
 
-const ChatgptRobotComponent = () => {
+const ChatgptRobotComponent = (props) => {
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
   const TITLE = "ChatGPT Robot";
   const MAX_LIMIT = 5;
   const MAX_TOKEN_LENTH_LIMIT = 4000;
   const appName = "Higress";
-  
+
   const scrollContainerRef: any = useRef(null);
   const scrollTimer: any = useRef(null);
   const scrollBottom = () => {
@@ -23,10 +24,17 @@ const ChatgptRobotComponent = () => {
     }, 800);
   };
   useEffect(() => {
+    setVisible(props.visible);
     return () => {
       scrollTimer.current && clearTimeout(scrollTimer.current);
     };
-  }, []);
+  }, [props.visible]);
+
+  const closeModal = () => {
+    const { onClose } = props;
+    onClose && onClose();
+    setVisible(false);
+  };
 
   const initMessage = {
     text: `请在输入框中发送 OpenAI 密钥，开始于 # `,
@@ -166,10 +174,14 @@ const ChatgptRobotComponent = () => {
   };
 
   return (
-    <div className={styles["chatgpt-robot"]}>
+    <div
+      className={`${styles["chatgpt-robot"]} ${
+        visible ? styles["chatgpt-robot-open"] : styles["chatgpt-robot-close"]
+      } `}
+    >
       <header className={styles["chatgpt-robot-header"]}>
         {TITLE}
-        <span>&times;</span>
+        <span onClick={closeModal}>&times;</span>
       </header>
       <div className={styles["chatgpt-robot-message"]} ref={scrollContainerRef}>
         {messages.current.map((msg, index) => (
