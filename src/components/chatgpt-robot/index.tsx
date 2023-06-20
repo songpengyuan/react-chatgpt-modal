@@ -1,17 +1,29 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-import ChatgptRobotMessage from "./chat-robot-message/index.tsx";
-import ChatgptRobotForm from "./chat-robot-form/index.tsx";
+import ChatgptRobotMessage from "./chat-robot-message/index";
+import ChatgptRobotForm from "./chat-robot-form/index";
 import styles from "./index.module.scss";
 
+const DEFAULT_CONFIG = {
+  placeholder: "请输入你的问题",
+  gptApi: "http://47.251.1.215/chat/gpt",
+  appName: "Higress",
+};
+
 const ChatgptRobotComponent = (props) => {
+  const config = {
+    ...DEFAULT_CONFIG,
+    ...props.config,
+  };
+
+  const { appName } = config;
+
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const TITLE = "ChatGPT Robot";
-  const MAX_LIMIT = 5;
-  const MAX_TOKEN_LENTH_LIMIT = 4000;
-  const appName = "Higress";
+  // const MAX_LIMIT = 5;
+  // const MAX_TOKEN_LENTH_LIMIT = 4000;
 
   const scrollContainerRef: any = useRef(null);
   const scrollTimer: any = useRef(null);
@@ -70,30 +82,14 @@ const ChatgptRobotComponent = (props) => {
   const sendChatGPTMessage = ($event) => {
     const { message } = $event;
     setLoading(true);
-    // var form = new FormData();
-    // form.append("input", "帮我生成Dubbo接入示例代码");
-
-    const formData = {
-      input: message, // "今天是几号",
-    };
-    const config = {
-      headers: {
-        "cache-control": "no-cache",
-        "content-type":
-          "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-        "postman-token": "5392232b-4ceb-ad40-c3cd-31c3d4139982",
-      },
-    };
 
     axios
-      // .post("http://47.251.1.215/chat/gpt", formData, config)
-      // .post("http://localhost:3000/chat/gpt", formData, config)
-      // .post("http://gpt.xiaoman.com/chat/gpt", formData, config)
-      .post("/chat/gpt", formData, config)
+      .post(config.gptApi, {
+        input: message,
+      })
       .then((res: any) => {
-        debugger;
         setLoading(false);
-        if (!res || !res?.result) {
+        if (!res || !res?.data) {
           const error = res.error || res.msg || "unknown error";
           messages.current.push({
             text: `ChatGPT Error: ${error}`,
@@ -109,7 +105,7 @@ const ChatgptRobotComponent = (props) => {
           return;
         }
         messages.current.push({
-          text: res.result,
+          text: res.data,
           date: new Date(),
           reply: true,
           type: "text",
@@ -188,7 +184,11 @@ const ChatgptRobotComponent = (props) => {
           <ChatgptRobotMessage key={index} data={msg}></ChatgptRobotMessage>
         ))}
       </div>
-      <ChatgptRobotForm loading={loading} onSend={(e) => sendMessage(e)} />
+      <ChatgptRobotForm
+        loading={loading}
+        placeholder={config.placeholder}
+        onSend={(e) => sendMessage(e)}
+      />
     </div>
   );
 };

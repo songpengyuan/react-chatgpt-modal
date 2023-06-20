@@ -13,8 +13,8 @@ const ChatgptRobotForm = (props) => {
   const sendMessage = () => {
     if (loading) return;
     if (!String(inputValue).trim().length) return;
-    onSend({ message: inputValue });
     setInputValue("");
+    onSend({ message: inputValue });
   };
 
   const handleKeyDown = (event) => {
@@ -29,7 +29,7 @@ const ChatgptRobotForm = (props) => {
       <textarea
         value={inputValue}
         className={styles["chatgpt-robot-textarea"]}
-        placeholder={placeholder || "#OPENAPI_KEY 发送消息到 AI"}
+        placeholder={placeholder}
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
       ></textarea>

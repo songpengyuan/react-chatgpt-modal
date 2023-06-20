@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <ChatgptRobot
         visible={visible}
-        title="这是自定义title"
+        title=""
         onClose={closeModal}
       />
       <div onClick={handleClckiBtn}>ChatGPT Robot</div>
