@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = function override(config, env) {
-  config.entry = "./src/components/index.js";
+  config.entry = "./src/components/index.tsx";
   config.output = {
     ...config.output,
     path: path.resolve(__dirname, "./lib"),
