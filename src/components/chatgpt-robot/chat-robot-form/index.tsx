@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./index.module.scss";
 
 const ChatgptRobotForm = (props) => {
-  const { onSend, loading, placeholder } = props;
+  const { onSend, loading, placeholder, inputMaxLength } = props;
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e) => {
@@ -12,9 +12,13 @@ const ChatgptRobotForm = (props) => {
 
   const sendMessage = () => {
     if (loading) return;
-    if (!String(inputValue).trim().length) return;
-    setInputValue("");
-    onSend({ message: inputValue });
+    const message = String(inputValue).trim();
+
+    if (!message.length) return;
+    onSend({ message: message });
+    setTimeout(() => {
+      setInputValue("");
+    }, 100);
   };
 
   const handleKeyDown = (event) => {
@@ -32,6 +36,7 @@ const ChatgptRobotForm = (props) => {
         placeholder={placeholder}
         onKeyDown={handleKeyDown}
         onChange={handleInputChange}
+        maxLength={inputMaxLength}
       ></textarea>
       <button
         className={styles["chatgpt-robot-form-btn"]}

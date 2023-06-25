@@ -39,31 +39,39 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### Components Config
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+const replyInfo = {
+  name: "Higress",
+  avatar: "https://avatars.githubusercontent.com/u/116630909?s=200&v=4",
+};
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const initMessage = {
+  text: `您好~ 如果您喜欢 <b>ChatGPT 插件</b>，请给 Higress 一颗星！ <br /> 您的支持是我们最大的动力～`,
+  img: "https://postcat.com/zh/assets/images/heart.png",
+  link: "https://github.com/alibaba/higress",
+  date: new Date(),
+  reply: true,
+  type: "init",
+  user: replyInfo,
+};
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+export const DEFAULT_CONFIG = {
+  title: "ChatGPT Robot",
+  gptApi: "http://47.251.1.215/chat/gpt",
+  appName: "Higress",
+  placeholder: "请输入你的问题",
+  inputMaxLength: 1000,
+  initMessage,
+  userInfo: {
+    name: "Visitor",
+    avatar:
+      "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+  },
+  replyInfo,
+};
+```
 
 ### `npm run build` fails to minify
 

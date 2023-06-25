@@ -1,0 +1,29 @@
+.star-motivation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.star-motivation-text {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+.favor-image-link {
+  background-color: #eee;
+  border-radius: 50%;
+  padding: 13px;
+  margin-top: 15px;
+}
+
+.favor-image {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  transition: all .3s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}

@@ -4,7 +4,7 @@ import "./App.css";
 import ChatgptRobot from "./components/chatgpt-robot/index.tsx";
 
 function App() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   const closeModal = () => {
     setVisible(false);
@@ -16,12 +16,10 @@ function App() {
 
   return (
     <div className="App">
-      <ChatgptRobot
-        visible={visible}
-        title=""
-        onClose={closeModal}
-      />
-      <div onClick={handleClckiBtn}>ChatGPT Robot</div>
+      <ChatgptRobot visible={visible} title="" onClose={closeModal} />
+      <div onClick={handleClckiBtn} className="start-button">
+        ChatGPT Robot
+      </div>
     </div>
   );
 }
