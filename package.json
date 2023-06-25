@@ -1,6 +1,6 @@
 {
   "name": "react-chatgpt-modal",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "keywords": [
     "react",
     "chatgpt",
@@ -22,9 +22,6 @@
     "dist/index.css"
   ],
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-app-rewired": "^2.2.1",
@@ -37,7 +34,6 @@
     "start": "react-scripts start",
     "build:lib": "react-app-rewired build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "build": "npm run clean && npm run build-es && npm run build-umd",
     "clean": "rimraf ./dist",
     "build-es": "rollup --config rollup/rollup.esm.config.js",
