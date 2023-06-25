@@ -26,4 +26,5 @@ export const DEFAULT_CONFIG = {
       "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
   },
   replyInfo,
+  robotStyle: {},
 };

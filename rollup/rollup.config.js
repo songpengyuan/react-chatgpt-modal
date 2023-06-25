@@ -23,10 +23,15 @@ const config = {
     json(),
     typescript({ tsconfigOverride: overrides }),
     styles({
+      // modules: {
+      // mode: "local",
       mode: "inject",
-      autoModules: true,
+      autoModules: true
+      // autoModules: true
+      // generateScopedName: "chatgptAAA_[local]_[hash:4]", // 控制我们的css生成规则。
+      // },
     }),
-    sass(),
+    // sass({ output: "dist/index.css" }),
   ],
 };
 

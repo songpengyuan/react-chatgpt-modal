@@ -122,6 +122,7 @@ const ChatgptRobotComponent = (props) => {
       className={`${styles["chatgpt-robot"]} ${
         visible ? styles["chatgpt-robot-open"] : styles["chatgpt-robot-close"]
       } `}
+      style={config.robotStyle || {}}
     >
       <header className={styles["chatgpt-robot-header"]}>
         {title}
