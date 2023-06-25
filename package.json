@@ -68,6 +68,7 @@
     "customize-cra": "^1.0.0",
     "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.23",
     "rollup-plugin-sass": "^1.12.19",
+    "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^5.1.3"
   }
