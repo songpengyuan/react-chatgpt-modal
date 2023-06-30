@@ -14,7 +14,8 @@ const ChatgptRobotComponent = (props) => {
     ...props.config,
   };
 
-  const { appName, initMessage, title, userInfo, replyInfo } = config;
+  const { appName, initMessage, title, userInfo, replyInfo, errorText } =
+    config;
 
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -58,7 +59,7 @@ const ChatgptRobotComponent = (props) => {
         if (!res || !res?.data) {
           const error = res.error || res.msg || "unknown error";
           messages.current.push({
-            text: `ChatGPT Error: ${error}`,
+            text: `${errorText}: ${error}`,
             date: new Date(),
             reply: true,
             type: "text",
@@ -83,7 +84,7 @@ const ChatgptRobotComponent = (props) => {
       .catch((err) => {
         setLoading(false);
         messages.current.push({
-          text: "ChatGPT Error",
+          text: errorText,
           date: new Date(),
           reply: true,
           type: "error",
@@ -130,9 +131,23 @@ const ChatgptRobotComponent = (props) => {
       </header>
       <div className={styles["chatgpt-robot-message"]} ref={scrollContainerRef}>
         {messages.current.map((msg, index) => (
-          <ChatgptRobotMessage key={index} data={msg}></ChatgptRobotMessage>
+          <ChatgptRobotMessage key={index} data={msg} />
         ))}
+        {!!loading && (
+          <ChatgptRobotMessage
+            data={{
+              date: new Date(),
+              reply: true,
+              type: "loading",
+              user: {
+                name: replyInfo.name,
+                avatar: replyInfo.avatar,
+              },
+            }}
+          />
+        )}
       </div>
+
       <ChatgptRobotForm
         loading={loading}
         placeholder={config.placeholder}

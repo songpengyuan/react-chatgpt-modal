@@ -20,12 +20,23 @@ const ChatgptRobotMessage = (props) => {
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
+    let timer;
+    if (type === "loading") {
+      setDisplayedText('.')
+      timer = setInterval(() => {
+        setDisplayedText((prevValue) => {
+          return prevValue.length < 7 ? prevValue + "." : ".";
+        });
+      }, 1000);
+      return;
+    }
+
     if (["init", "error"].includes(type) || !reply) {
       setDisplayedText(text);
       return;
     }
     let index = 0;
-    const timer = setInterval(() => {
+    timer = setInterval(() => {
       if (index <= text.length) {
         setDisplayedText(text.substring(0, index));
         index++;

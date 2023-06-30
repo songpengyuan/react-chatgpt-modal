@@ -27,4 +27,5 @@ export const DEFAULT_CONFIG = {
   },
   replyInfo,
   robotStyle: {},
+  errorText: 'GPT Robot Error'
 };
