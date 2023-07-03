@@ -14,27 +14,20 @@ const ChatgptRobotComponent = (props) => {
     ...props.config,
   };
 
-  const { appName, initMessage, title, userInfo, replyInfo, errorText } =
-    config;
+  const { initMessage, title, userInfo, replyInfo, errorText } = config;
 
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const scrollContainerRef: any = useRef(null);
-  const scrollTimer: any = useRef(null);
   const scrollBottom = () => {
-    scrollTimer.current = setInterval(() => {
-      const scrollContainer = scrollContainerRef.current;
-      if (scrollContainer) {
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
-      }
-    }, 800);
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    }
   };
   useEffect(() => {
     setVisible(props.visible);
-    return () => {
-      scrollTimer.current && clearInterval(scrollTimer.current);
-    };
   }, [props.visible]);
 
   const closeModal = () => {
@@ -131,7 +124,10 @@ const ChatgptRobotComponent = (props) => {
       </header>
       <div className={styles["chatgpt-robot-message"]} ref={scrollContainerRef}>
         {messages.current.map((msg, index) => (
-          <ChatgptRobotMessage key={index} data={msg} />
+          <ChatgptRobotMessage
+            key={index}
+            data={msg}
+          />
         ))}
         {!!loading && (
           <ChatgptRobotMessage

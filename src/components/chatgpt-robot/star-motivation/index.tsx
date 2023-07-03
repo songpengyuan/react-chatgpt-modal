@@ -17,7 +17,12 @@ const StarMotivation = (props) => {
           __html: text,
         }}
       ></p>
-      <a className={styles["favor-image-link"]} href={link} target="_blank">
+      <a
+        className={styles["favor-image-link"]}
+        href={link}
+        target="_blank"
+        rel="noopener"
+      >
         <img className={styles["favor-image"]} loading="lazy" src={img} />
       </a>
     </div>

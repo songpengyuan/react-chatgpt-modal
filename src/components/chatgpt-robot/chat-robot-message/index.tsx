@@ -22,7 +22,7 @@ const ChatgptRobotMessage = (props) => {
   useEffect(() => {
     let timer;
     if (type === "loading") {
-      setDisplayedText('.')
+      setDisplayedText(".");
       timer = setInterval(() => {
         setDisplayedText((prevValue) => {
           return prevValue.length < 7 ? prevValue + "." : ".";
